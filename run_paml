@@ -1,0 +1,28 @@
+
+# generating files for paml
+prank -d=data/aligned/all_aligned.fasta -convert -f=paml -o=data/aligned/all_aligned
+iqtree -s data/aligned/all_aligned.fasta
+
+# organising folders
+mv data/aligned/all_aligned.fasta.bionj ./archive/clutter/
+mv data/aligned/all_aligned.fasta.ckp.gz ./archive/clutter/
+mv data/aligned/all_aligned.fasta.log ./archive/clutter/
+mv data/aligned/all_aligned.fasta.mldist ./archive/clutter/
+mv data/aligned/all_aligned.fasta.model.gz ./archive/clutter/
+mv tmpdirprankm* ./archive/clutter/
+mv data/aligned/all_aligned.phy data/for_paml
+mv data/aligned/all_aligned.fasta.treefile data/for_paml
+
+# run paml
+codeml script/paml/run_m0f1.ctl
+codeml script/paml/run_m0f0.ctl
+codeml script/paml/run_m1f0.ctl
+# branch-site models use a different treefile where triunguis is set as the foreground species
+codeml script/paml/run_m2f0.ctl
+codeml script/paml/run_m2f1.ctl
+
+# organising folders
+mv 2NG.* ./archive/clutter
+mv lnf ./archive/clutter
+mv rst* ./achive/clutter
+mv rub* ./archive/clutter

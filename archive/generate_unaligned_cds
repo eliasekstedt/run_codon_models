@@ -1,0 +1,4 @@
+#python3 cpfiles/get_cds_from_ensembl.py cpfiles/lea2.txt > LEA_CDS_seqs_unaligned.fasta
+python3 script/python/get_cds_from_ensembl.py data/id_species.txt > data/cds/reptilia.fasta
+cat data/cds/*.fasta > data/cds/cds_unaligned.fasta
+cat data/cds/cds_unaligned.fasta

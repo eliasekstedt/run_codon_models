@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# create the header row of the output csv
+echo "model,extr" > output.csv
+
+# loop through the input files
+for file in out_m*.txt; do
+  # get the model name from the filename
+  model=${file#out_}
+  model=${model%.txt}
+  
+  # get the extr value from the file
+  extr=$(grep 'lnL(ntime:' $file)
+
+  # add the values to the output csv
+  echo "$model,$extr" >> output.csv
+done
